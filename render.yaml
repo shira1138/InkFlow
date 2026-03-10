@@ -1,0 +1,36 @@
+services:
+  - type: web
+    name: inkflow-backend
+    runtime: node
+    plan: free
+    buildCommand: "cd backend && npm install"
+    startCommand: "cd backend && npm start"
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false
+      - key: CORS_ORIGIN
+        value: https://inkflow-frontend.onrender.com
+      - key: PORT
+        value: 5000
+
+  - type: web
+    name: inkflow-frontend
+    runtime: static
+    plan: free
+    buildCommand: "cd frontend && npm install && npm run build"
+    staticPublishPath: frontend/build
+    routes:
+      - path: "/*"
+        methods:
+          - GET
+        destination: /index.html
+    envVars:
+      - key: REACT_APP_API_URL
+        value: https://inkflow-backend.onrender.com/api
+
+  - type: postgresql
+    name: inkflow-db
+    plan: free
+    ipAllowList: []

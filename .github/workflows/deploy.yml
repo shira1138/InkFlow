@@ -1,0 +1,29 @@
+name: Deploy to Render
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Validate deployment files
+        run: |
+          echo "✓ Checking render.yaml..."
+          test -f render.yaml && echo "✓ render.yaml exists"
+          echo "✓ Checking backend package.json..."
+          test -f backend/package.json && echo "✓ backend/package.json exists"
+          echo "✓ Checking frontend package.json..."
+          test -f frontend/package.json && echo "✓ frontend/package.json exists"
+      
+      - name: Notification
+        run: |
+          echo "✅ Deployment files validated"
+          echo "Render will automatically deploy from GitHub"
+          echo "Watch deployment at: https://dashboard.render.com"
