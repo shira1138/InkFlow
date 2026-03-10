@@ -5,6 +5,28 @@
   background-color: #f0f0f0;
 }
 
+/* Main content with sidebar layout */
+.editor-main {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.ribbon-toolbar {
+  flex: 1;
+  background-color: #ffffff;
+  border-bottom: 1px solid #ddd;
+  overflow-y: auto;
+}
+
+.editor-sidebar {
+  width: 280px;
+  background-color: #ffffff;
+  border-left: 2px solid #e0e0e0;
+  overflow-y: auto;
+  box-shadow: -2px 0 4px rgba(0, 0, 0, 0.05);
+}
+
 /* Top Bar - File Operations */
 .editor-top-bar {
   display: flex;
@@ -109,8 +131,8 @@
 
 .group-content {
   flex: 1;
-  overflow-y: auto;
-  padding: 1rem 1.5rem;
+  overflow-y: visible;
+  padding: 0.8rem 0;
   background-color: #fff;
 }
 
@@ -118,7 +140,7 @@
 .quill-editor-word {
   background-color: white;
   border: none;
-  height: calc(100vh - 310px);
+  height: calc(100vh - 280px);
   border-radius: 0;
 }
 
@@ -149,6 +171,118 @@
   counter-reset: line;
 }
 
+/* Font Family Support */
+.ql-snow .ql-picker.ql-font span[data-label="serif"]::before {
+  font-family: Georgia, serif;
+}
+
+.ql-snow .ql-picker.ql-font span[data-label="monospace"]::before,
+.ql-snow .ql-picker.ql-font span[data-label="Courier New"]::before {
+  font-family: 'Courier New', monospace;
+}
+
+.ql-snow .ql-picker.ql-font span[data-label="sans-serif"]::before {
+  font-family: Arial, sans-serif;
+}
+
+.ql-snow .ql-picker.ql-font span[data-label="Georgia"]::before {
+  font-family: Georgia, serif;
+}
+
+.ql-snow .ql-picker.ql-font span[data-label="Times New Roman"]::before {
+  font-family: 'Times New Roman', serif;
+}
+
+.ql-snow .ql-picker.ql-font span[data-label="Arial"]::before {
+  font-family: Arial, sans-serif;
+}
+
+.ql-snow .ql-picker.ql-font span[data-label="Helvetica"]::before {
+  font-family: Helvetica, sans-serif;
+}
+
+.ql-snow .ql-picker.ql-font span[data-label="Verdana"]::before {
+  font-family: Verdana, sans-serif;
+}
+
+.ql-snow .ql-picker.ql-font span[data-label="Comic Sans MS"]::before {
+  font-family: 'Comic Sans MS', cursive;
+}
+
+.ql-snow .ql-picker.ql-font span[data-label="Trebuchet MS"]::before {
+  font-family: 'Trebuchet MS', sans-serif;
+}
+
+.ql-snow .ql-picker.ql-font span[data-label="Impact"]::before {
+  font-family: Impact, sans-serif;
+}
+
+.ql-snow .ql-picker.ql-font span[data-label="Palatino"]::before {
+  font-family: Palatino, serif;
+}
+
+.ql-snow .ql-picker.ql-font span[data-label="Garamond"]::before {
+  font-family: Garamond, serif;
+}
+
+.ql-snow .ql-picker.ql-font span[data-label="Bookman"]::before {
+  font-family: Bookman, serif;
+}
+
+.ql-snow .ql-picker.ql-font span[data-label="Consolas"]::before {
+  font-family: Consolas, monospace;
+}
+
+.ql-snow .ql-picker.ql-font span[data-label="Calibri"]::before {
+  font-family: Calibri, sans-serif;
+}
+
+.ql-snow .ql-picker.ql-font span[data-label="Cambria"]::before {
+  font-family: Cambria, serif;
+}
+
+.ql-snow .ql-picker.ql-font span[data-label="Century Gothic"]::before {
+  font-family: 'Century Gothic', sans-serif;
+}
+
+.ql-snow .ql-picker.ql-font span[data-label="Century Schoolbook"]::before {
+  font-family: 'Century Schoolbook', serif;
+}
+
+.ql-snow .ql-picker.ql-font span[data-label="Perpetua"]::before {
+  font-family: Perpetua, serif;
+}
+
+.ql-snow .ql-picker.ql-font span[data-label="Lucida Console"]::before {
+  font-family: 'Lucida Console', monospace;
+}
+
+.ql-snow .ql-picker.ql-font span[data-label="Lucida Handwriting"]::before {
+  font-family: 'Lucida Handwriting', cursive;
+}
+
+/* Font Size Support - All sizes explicitly */
+.ql-snow .ql-picker.ql-size span[data-label="8px"]::before { font-size: 8px; }
+.ql-snow .ql-picker.ql-size span[data-label="10px"]::before { font-size: 10px; }
+.ql-snow .ql-picker.ql-size span[data-label="12px"]::before { font-size: 12px; }
+.ql-snow .ql-picker.ql-size span[data-label="14px"]::before { font-size: 14px; }
+.ql-snow .ql-picker.ql-size span[data-label="16px"]::before { font-size: 16px; }
+.ql-snow .ql-picker.ql-size span[data-label="18px"]::before { font-size: 18px; }
+.ql-snow .ql-picker.ql-size span[data-label="20px"]::before { font-size: 20px; }
+.ql-snow .ql-picker.ql-size span[data-label="22px"]::before { font-size: 22px; }
+.ql-snow .ql-picker.ql-size span[data-label="24px"]::before { font-size: 24px; }
+.ql-snow .ql-picker.ql-size span[data-label="26px"]::before { font-size: 26px; }
+.ql-snow .ql-picker.ql-size span[data-label="28px"]::before { font-size: 28px; }
+.ql-snow .ql-picker.ql-size span[data-label="32px"]::before { font-size: 32px; }
+.ql-snow .ql-picker.ql-size span[data-label="36px"]::before { font-size: 36px; }
+.ql-snow .ql-picker.ql-size span[data-label="40px"]::before { font-size: 40px; }
+.ql-snow .ql-picker.ql-size span[data-label="48px"]::before { font-size: 48px; }
+.ql-snow .ql-picker.ql-size span[data-label="56px"]::before { font-size: 56px; }
+.ql-snow .ql-picker.ql-size span[data-label="64px"]::before { font-size: 64px; }
+.ql-snow .ql-picker.ql-size span[data-label="72px"]::before { font-size: 72px; }
+.ql-snow .ql-picker.ql-size span[data-label="96px"]::before { font-size: 96px; }
+
+/* Apply font families in editor */
 .ql-editor.ql-blank::before {
   color: #999;
   font-style: italic;
@@ -225,6 +359,16 @@
 }
 
 /* Responsive Design */
+@media (max-width: 1024px) {
+  .editor-sidebar {
+    width: 220px;
+  }
+
+  .quill-editor-word {
+    height: calc(100vh - 260px);
+  }
+}
+
 @media (max-width: 768px) {
   .editor-top-bar {
     flex-direction: column;
@@ -241,8 +385,23 @@
     max-width: 100%;
   }
 
-  .ql-editor {
+  .editor-main {
+    flex-direction: column;
+  }
+
+  .editor-sidebar {
+    width: 100%;
+    border-left: none;
+    border-top: 2px solid #e0e0e0;
+    max-height: 200px;
+  }
+
+  .quill-editor-word {
+    height: calc(100vh - 500px);
     padding: 1rem;
-    min-height: 400px;
+  }
+
+  .toolbar-extras {
+    max-height: 200px;
   }
 }

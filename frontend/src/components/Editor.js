@@ -1,23 +1,61 @@
 import React, { useState, useEffect } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import ToolbarExtras from './ToolbarExtras';
 import '../styles/Editor.css';
 
 const modules = {
   toolbar: {
     container: [
+      // Headers and Basic Formatting
       [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+      
+      // Text Styles
       ['bold', 'italic', 'underline', 'strike'],
+      
+      // Lists and Indentation
       [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+      [{ 'list': 'check' }],
+      
+      // Superscript and Subscript
       [{ 'script': 'sub'}, { 'script': 'super' }],
       [{ 'indent': '-1'}, { 'indent': '+1' }],
-      [{ 'size': ['small', false, 'large', 'huge'] }],
+      
+      // Font Family - Comprehensive Selection
+      [{ 'font': [
+        false, // default
+        'serif', 'monospace', 'sans-serif',
+        'Georgia', 'Times New Roman', 'Courier New',
+        'Arial', 'Helvetica', 'Verdana', 'Comic Sans MS',
+        'Trebuchet MS', 'Impact', 'Palatino', 'Garamond',
+        'Bookman', 'Consolas', 'Calibri', 'Cambria',
+        'Century Gothic', 'Century Schoolbook', 'Perpetua',
+        'Lucida Console', 'Lucida Handwriting'
+      ]}],
+      
+      // Font Size - All sizes
+      [{ 'size': [
+        '8px', '10px', '12px', '14px', '16px', '18px', '20px', '22px', '24px', '26px', '28px',
+        '32px', '36px', '40px', '48px', '56px', '64px', '72px', '96px'
+      ]}],
+      
+      // Colors and Background
       [{ 'color': [] }, { 'background': [] }],
-      [{ 'font': [] }],
+      
+      // Text Alignment
       [{ 'align': [] }],
+      
+      // Blockquote and Code
       ['blockquote', 'code-block'],
+      
+      // Divider
+      ['divider'],
+      
+      // Media
       ['link', 'image', 'video'],
-      ['clean'],
+      
+      // Clear Formatting
+      ['clean']
     ],
   },
 };
@@ -25,7 +63,8 @@ const modules = {
 const formats = [
   'header', 'bold', 'italic', 'underline', 'strike',
   'list', 'script', 'indent', 'size', 'color', 'background',
-  'font', 'align', 'link', 'image', 'video', 'blockquote', 'code-block'
+  'font', 'align', 'link', 'image', 'video', 'blockquote', 'code-block',
+  'divider'
 ];
 
 function Editor({ document, onSave }) {
@@ -141,21 +180,32 @@ function Editor({ document, onSave }) {
 
       {saveMessage && <div className="save-message">{saveMessage}</div>}
 
-      {/* Ribbon Toolbar (Word-like) */}
-      <div className="ribbon-toolbar">
-        <div className="ribbon-group">
-          <label className="toolbar-label">Home Tab</label>
-          <div className="group-content">
-            <ReactQuill
-              theme="snow"
-              value={content}
-              onChange={handleContentChange}
-              modules={modules}
-              formats={formats}
-              className="quill-editor-word"
-              placeholder="Start typing your document..."
-            />
+      {/* Main Content with Sidebar */}
+      <div className="editor-main">
+        {/* Ribbon Toolbar (Word-like) */}
+        <div className="ribbon-toolbar">
+          <div className="ribbon-group">
+            <label className="toolbar-label">Home Tab - Full Formatting Options</label>
+            <div className="group-content">
+              <ReactQuill
+                theme="snow"
+                value={content}
+                onChange={handleContentChange}
+                modules={modules}
+                formats={formats}
+                className="quill-editor-word"
+                placeholder="Start typing your document..."
+              />
+            </div>
           </div>
+        </div>
+
+        {/* Sidebar with Extras */}
+        <div className="editor-sidebar">
+          <ToolbarExtras onInsert={(text) => {
+            setContent(content + text);
+            updateStats(content + text);
+          }} />
         </div>
       </div>
     </div>
